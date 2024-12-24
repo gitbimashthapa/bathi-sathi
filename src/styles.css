@@ -1,0 +1,57 @@
+
+/* Layout */
+.App {
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: sans-serif;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Chat window container */
+  .chat-window {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+    text-align: left;
+    margin-bottom: 20px;
+    background-color: #fafafa;
+  }
+  
+  /* User and bot messages */
+  .user-message {
+    background-color: #d1e7ff;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 4px;
+    text-align: left;
+    max-width: 80%;
+  }
+  
+  .bot-message {
+    background-color: #f1f0f0;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 4px;
+    text-align: left;
+    max-width: 80%;
+  }
+  
+  /* Microphone / input section */
+  .microphone-section {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .microphone-section input {
+    flex: 1;
+    padding: 8px;
+  }
+  
+  .microphone-section button {
+    padding: 8px 16px;
+  }
+  

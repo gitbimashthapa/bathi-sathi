@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+
+import React, { useState } from 'react';
+import ChatWindow from './components/ChatWindow';
+import MicrophoneButton from './components/MicrophoneButton';
+import './styles.css';
 
 function App() {
+  // Keep track of messages in an array of objects
+  const [messages, setMessages] = useState([]);
+
+  //handler to add new user messages
+  const handleSendMessage = (text) => {
+    setMessages((prev) => [...prev, { role: 'user', content: text }]);
+    
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Bathi Sathi</h1>
+      {/* ChatWindow will display conversation */}
+      <ChatWindow messages={messages} />
+
+      {/* MicrophoneButton will be replaced with actual voice input later */}
+      <MicrophoneButton onSend={handleSendMessage} />
     </div>
   );
 }
