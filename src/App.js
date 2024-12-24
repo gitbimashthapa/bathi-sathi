@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ChatWindow from './components/ChatWindow';
 import MicrophoneButton from './components/MicrophoneButton';
-import { getOpenAIResponse } from './services/openAIService'; // import our function
+import { getOpenAIResponse } from './services/openAIServices'; // import our function
 import './styles.css';
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Voice Chatbot Demo</h1>
+      <h1>Bathi Sathi</h1>
       <ChatWindow messages={messages} />
       <MicrophoneButton onSend={handleSendMessage} />
     </div>
