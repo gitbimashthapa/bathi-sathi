@@ -1,32 +1,30 @@
 import React, { useState } from 'react';
 import ChatWindow from './components/ChatWindow';
-import MicrophoneButton from './components/MicrophoneButton';
-import { getOpenAIResponse } from './services/openAIServices'; // import our function
+import STT from './components/STT'; 
+import { getOpenAIResponse } from './services/openAIServices';
 import './styles.css';
 
 function App() {
   const [messages, setMessages] = useState([]);
 
-  // Helper function to send conversation to OpenAI
+  // Send entire conversation to OpenAI and append bot's reply
   const fetchBotResponse = async (updatedMessages) => {
-    // Call our service with the full conversation
-    const botReply = await getOpenAIResponse(updatedMessages);
-    // Add the bot's message to our conversation
-    setMessages((prev) => [
-      ...prev,
-      { role: 'assistant', content: botReply },
-    ]);
+    try {
+      const botReply = await getOpenAIResponse(updatedMessages);
+      setMessages((prev) => [...prev, { role: 'assistant', content: botReply }]);
+    } catch (error) {
+      console.error('Error fetching bot response:', error);
+    }
   };
 
+
   const handleSendMessage = async (text) => {
-    // 1. Add the user message to the conversation
+    // Add user's message
     const newUserMessage = { role: 'user', content: text };
     setMessages((prev) => [...prev, newUserMessage]);
 
-    // 2. Prepare the updated conversation for the bot
+    // Send updated conversation to OpenAI
     const updatedConversation = [...messages, newUserMessage];
-
-    // 3. Send updated conversation to OpenAI
     await fetchBotResponse(updatedConversation);
   };
 
@@ -34,7 +32,9 @@ function App() {
     <div className="App">
       <h1>Bathi Sathi</h1>
       <ChatWindow messages={messages} />
-      <MicrophoneButton onSend={handleSendMessage} />
+
+      {/* STT: We pass handleSendMessage as onTranscribed */}
+      <STT onTranscribed={handleSendMessage} />
     </div>
   );
 }
