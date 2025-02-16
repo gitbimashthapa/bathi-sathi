@@ -1,3 +1,10 @@
+# pip install speechrecognition
+# sudo apt-get install python3-pyaudio
+# pip install pyaudio
+# pip install pyttsx3
+# init(driverName string, debug bool)
+# say(text unicode, name string)
+
 # Python program to translate
 # speech to text and text to speech
 
